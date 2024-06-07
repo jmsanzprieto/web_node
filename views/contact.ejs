@@ -1,0 +1,49 @@
+<%- include('partials/header') %>
+<!-- Main Content-->
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <p>Esto es una página de contacto muy sencilla.</p>
+                <p>El proceso de envio se hace, pero envía a una direccion que <b>no existe</b>, así que <b>no hay trafico de datos</b>.</p>
+                
+                <!-- Alert container -->
+                <% if (msg.length > 0) { %>
+                  <div class="alert <%= msgType %> alert-dismissible fade show" role="alert">
+                    <%= msg %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                <% } %>
+
+                <div class="my-5">
+                    <form id="contactForm" method="POST" action="/send-email" data-sb-form-api-token="API_TOKEN">
+                        <div class="form-floating">
+                            <input class="form-control" id="name" name="name" type="text" placeholder="Nombre..." data-sb-validations="required" />
+                            <label for="name">Nombre</label>
+                            <div class="invalid-feedback" data-sb-feedback="name:required">El nombre es obligatorio.</div>
+                        </div>
+                        <div class="form-floating">
+                            <input class="form-control" id="email" name="email" type="email" placeholder="Correo electrónico..." data-sb-validations="required,email" />
+                            <label for="email">Email</label>
+                            <div class="invalid-feedback" data-sb-feedback="email:required">El correo electrónico es obligatorio.</div>
+                            
+                        </div>
+                        <div class="form-floating">
+                            <input class="form-control" id="phone" name="phone" type="tel" placeholder="Telefono..." data-sb-validations="required" />
+                            <label for="phone">Teléfono</label>
+                            <div class="invalid-feedback" data-sb-feedback="phone:required">El teléfono es necesario.</div>
+                        </div>
+                        <div class="form-floating">
+                            <textarea class="form-control" id="message" name="message" placeholder="Comentarios..." style="height: 12rem" data-sb-validations="required"></textarea>
+                            <label for="message">Comentarios</label>
+                            <div class="invalid-feedback" data-sb-feedback="message:required">El mensaje es neceseario.</div>
+                        </div>
+                        <br />
+                        <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Enviar mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  </main>
+<%- include('partials/footer') %>
